@@ -1,0 +1,94 @@
+openapi: 3.0.1
+info:
+  title: 'STD21084'
+  version: 1.0.0
+externalDocs:
+  description: hello word
+  url: http://swagger.io
+servers:
+- url: https://petstore.swagger.io/v2
+
+tags:
+- name: Students
+- name: Course
+paths:
+  /Students:
+    get:
+      tags:
+      - Students
+      summary: Get all students
+      description: GET all students with details
+      operationId: getPetById
+      parameters:
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: page_size
+        in: query
+        required: true
+        schema:
+          type: integer
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Creatstudent'
+            
+        400:
+          description: Bad request
+      
+    post:
+      tags:
+      - Students
+      summary: Create new students
+      operationId: updatePetWithForm
+      description: Create new students from an array
+      
+      
+      requestBody:
+        content:
+          applicationapplication/json:
+              schema:
+               $ref: '#/components/schemas/Students'
+              properties:
+                name:
+                  type: string
+                  description: Updated name of the pet
+                status:
+                  type: string
+                  description: Updated status of the pet
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Creatstudent'
+            
+        400:
+          description: Bad request
+      
+components:
+  schemas:
+    Creatstudent:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+      xml:
+        name: Order
+    Students:
+      type: object
+      properties:
+        name:
+          type: string
+      xml:
+        name: Category
+    
